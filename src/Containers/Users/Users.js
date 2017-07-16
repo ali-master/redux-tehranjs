@@ -48,12 +48,15 @@ class Users extends React.Component {
 	addNewUser(e) {
 		e.preventDefault();
 
-		this.props.addUser(this.createFakeUser())
+		this.appendUsers(1);
 	}
-	componentDidMount() {
-		for (let i = 0; i < 10; i++) {
+	appendUsers(limit) {
+		for (let i = 0; i < limit; i++) {
 			this.props.addUser(this.createFakeUser())
 		}
+	}
+	componentDidMount() {
+		this.appendUsers(10);
 	}
 	render() {
 		let {users} = this.props;
