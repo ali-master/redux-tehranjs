@@ -1,71 +1,79 @@
 import React from "react"
-import {Icon, Table, Message, Button} from "semantic-ui-react";
 import {connect} from "react-redux";
 import Root from "Root";
 import propTypes from "prop-types";
+import request from "superagent";
 
+import {Icon, Table, Message, Button} from "semantic-ui-react";
 import {balanceAction, DesrementBalance} from "../../Actions/balance";
 
+// utils Components
+import Articles from "./Utils/Articles";
+
+// utilities
+import {toFa} from "Utilities";
+import moment from "moment-jalali";
+
 class Books extends React.Component {
-	static propTypes = {
+	static contextTypes = {
 		store: propTypes.object
+	}
+	state = {
+		items: []
 	}
 	constructor(props, context) {
 		super(props, context)
+
+		this.store = this.context.store;
+	}
+	componentWillMount() {
+		this.handleStore = () => this.store.subscribe(() => {
+			this.forceUpdate();
+		});
+	}
+	componentDidMount() {
+		this.handleStore()
+
+		this.getArticles().then(articles => {
+			this.setState({
+				items: [...this.state.items, ...articles]
+			})
+		});
+	}
+	getArticles() {
+		return new Promise((resolve, reject) => {
+			request
+			.get('http://596b0bcb14023a0011bcb5eb.mockapi.io/redux/articles')
+			.set('Accept', 'application/json')
+			.end((err, res) =>{
+				err && reject(err);
+				resolve(res.body);
+			});
+		});
+	}
+	renderArticlesTable({title, author, createdAt, rate, price}, index) {
+		return (
+			<Table.Row key={index} textAlign="center">
+				<Table.Cell>#{toFa(index + 1)}</Table.Cell>
+				<Table.Cell>{title}</Table.Cell>
+				<Table.Cell>{author}</Table.Cell>
+				<Table.Cell>{toFa(moment(createdAt).format("jYYYY/jM/jD HH:MM"))}</Table.Cell>
+				<Table.Cell>{toFa(rate)}</Table.Cell>
+				<Table.Cell>{toFa(price)}</Table.Cell>
+			</Table.Row>
+		)
 	}
 	render() {
-		console.log(this)
 		let {value} = this.props;
+		let {items} = this.state;
+
 		return (
 			<Root header="کتاب ها" content="نمایش لیست تمامی کتاب ها" icon="browser">
 				<Message info content={value} />
 				<Button positive content="add balance" icon="plus" labelPosition="right" onClick={() => {this.props.addCounter(50)}} />
 				<Button negative content="desrement balance" icon="minus" labelPosition="right" onClick={() => {this.props.DesrementBalance(10)}} />
-				<Table celled striped selectable className="dir-ltr">
-					<Table.Header>
-						<Table.Row>
-							<Table.HeaderCell colSpan="3">Git Repository</Table.HeaderCell>
-						</Table.Row>
-					</Table.Header>
 
-					<Table.Body>
-						<Table.Row>
-							<Table.Cell collapsing>
-								<Icon name="folder" /> node_modules
-							</Table.Cell>
-							<Table.Cell>Initial commit</Table.Cell>
-							<Table.Cell collapsing textAlign="right">10 hours ago</Table.Cell>
-						</Table.Row>
-						<Table.Row>
-							<Table.Cell>
-								<Icon name="folder" /> test
-							</Table.Cell>
-							<Table.Cell>Initial commit</Table.Cell>
-							<Table.Cell textAlign="right">10 hours ago</Table.Cell>
-						</Table.Row>
-						<Table.Row>
-							<Table.Cell>
-								<Icon name="folder" /> build
-							</Table.Cell>
-							<Table.Cell>Initial commit</Table.Cell>
-							<Table.Cell textAlign="right">10 hours ago</Table.Cell>
-						</Table.Row>
-						<Table.Row>
-							<Table.Cell>
-								<Icon name="file outline" /> package.json
-							</Table.Cell>
-							<Table.Cell>Initial commit</Table.Cell>
-							<Table.Cell textAlign="right">10 hours ago</Table.Cell>
-						</Table.Row>
-						<Table.Row>
-							<Table.Cell>
-								<Icon name="file outline" /> Gruntfile.js
-							</Table.Cell>
-							<Table.Cell>Initial commit</Table.Cell>
-							<Table.Cell textAlign="right">10 hours ago</Table.Cell>
-						</Table.Row>
-					</Table.Body>
-				</Table>
+				{items.length > 0 && <Articles items={items} handler={this.renderArticlesTable} />}
 			</Root>
 		)
 	}
