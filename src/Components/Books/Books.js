@@ -65,7 +65,7 @@ class Books extends React.Component {
 
 		return (
 			<Root header="کتاب ها" content="نمایش لیست تمامی کتاب ها" icon="browser">
-				{articles.length > 0 && <Articles items={articles} handler={this.renderArticlesTable} />}
+				<Articles items={articles} handler={this.renderArticlesTable} />
 			</Root>
 		)
 	}
