@@ -15,7 +15,10 @@ class FixedMenu extends Component {
 
 		return (
 			<Menu size="tiny" pointing stackable style={{direction: "ltr", margin: "0 20px", maxHeight: 50}}>
-				<Menu.Menu
+				<Menu.Menu>
+					<Menu.Item>
+						<Link to="/" className="iransans">صفحه اصلی</Link>
+					</Menu.Item>
 					<Dropdown item text="کوشا ساعی عزیز" className="username-dropdown-text">
 						<Dropdown.Menu>
 							<Dropdown.Item icon="settings" text="تنظیمات" onClick={(e) => {browserHistory.push("/settings")}} />
