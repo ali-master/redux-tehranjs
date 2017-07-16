@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Menu, Dropdown, Button, Icon} from "semantic-ui-react";
 
 // import utilities
-import {toFa, toDigits} from "Utilities";
+import {toFa} from "Utilities";
 
 class FixedMenu extends Component {
 	render() {
@@ -20,7 +20,7 @@ class FixedMenu extends Component {
 						</Dropdown.Menu>
 					</Dropdown>
 					<Menu.Item style={{direction: "rtl"}} className="iransans">
-						اعتبار: <span className="credit-number">{toFa(toDigits(balance))}</span> ریال
+						اعتبار: <span className="credit-number">{toFa(balance)}</span> ریال
 					</Menu.Item>
 				</Menu.Menu>
 				<Menu.Item position="right">

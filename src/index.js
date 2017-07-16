@@ -28,7 +28,3 @@ const router = (
 )
 
 ReactDOM.render(router, document.getElementById("root"));
-
-Store.subscribe(() => {
-	console.log(Store.getState())
-})
