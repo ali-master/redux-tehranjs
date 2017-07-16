@@ -89,9 +89,17 @@ module.exports = {
 			'react-native': 'react-native-web',
 
 			'Commons': path.resolve(paths.appSrc, "Commons"),
-			'Utilities': path.resolve(paths.appSrc, "Commons/Utilities"),
 			'Root': path.resolve(paths.appSrc, "Commons/Root"),
+			'Utilities': path.resolve(paths.appSrc, "Commons/Utilities"),
+
+			// redux Utilities
+			'Actions': path.resolve(paths.appSrc, "Actions"),
+			'Constants': path.resolve(paths.appSrc, "Constants"),
+			'Reducers': path.resolve(paths.appSrc, "Reducers"),
+			'Store': path.resolve(paths.appSrc, "configureStore"),
 			'Components': path.resolve(paths.appSrc, "Components"),
+			'Containers': path.resolve(paths.appSrc, "Containers"),
+
 			'Assets': path.resolve(paths.appSrc, "assets"),
 			'Styles': path.resolve(paths.appSrc, "Styles"),
 		},
