@@ -22,6 +22,9 @@
 .dir-rtl{
 	direction: rtl !important;
 }
+.plaintext{
+	unicode-bidi: plaintext;
+}
 body {
     font: 16px/1.5em "iransans", sans-serif;
     font-weight: normal;

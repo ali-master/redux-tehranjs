@@ -1,21 +1,19 @@
 import React from "react"
 import {connect} from "react-redux";
-import Root from "Root";
 import propTypes from "prop-types";
-import request from "superagent";
 
+import Root from "Root";
 import {Icon, Table, Message, Button} from "semantic-ui-react";
 
 // Actions
-import {getArticles} from "Actions/Articles";
-import {addArticles} from "Actions/Articles";
+import {addUser} from "Actions/Users";
 
 // utils Components
 import UsersTable from "./Utils/Users";
 
 // utilities
+import faker from "faker";
 import {toFa} from "Utilities";
-import moment from "moment-jalali";
 
 class Users extends React.Component {
 	static contextTypes = {
@@ -26,32 +24,44 @@ class Users extends React.Component {
 
 		this.store = this.context.store;
 	}
-	componentWillMount() {
-		this.handleStore = () => this.store.subscribe(() => {
-			this.forceUpdate();
-		});
-	}
-	componentDidMount() {
-		this.handleStore()
-	}
-	renderUsersTable({fname, lname, email, age, country}, index) {
+	renderUsersTable({fname, lname, email, phone, state}, index) {
 		return (
 			<Table.Row key={index} textAlign="center">
 				<Table.Cell>#{toFa(index + 1)}</Table.Cell>
 				<Table.Cell>{fname}</Table.Cell>
 				<Table.Cell>{lname}</Table.Cell>
-				<Table.Cell>{email}</Table.Cell>
-				<Table.Cell>{toFa(age)} سال</Table.Cell>
-				<Table.Cell>{toFa(country)}</Table.Cell>
+				<Table.Cell className="plaintext">{email}</Table.Cell>
+				<Table.Cell>{toFa(phone)}</Table.Cell>
+				<Table.Cell>{toFa(state)}</Table.Cell>
 			</Table.Row>
 		)
+	}
+	createFakeUser() {
+		return {
+			fname: faker.name.firstName(),
+			lname: faker.name.lastName(),
+			phone: faker.phone.phoneNumber(),
+			email: faker.internet.email(),
+			state: faker.address.state(),
+		}
+	}
+	addNewUser(e) {
+		e.preventDefault();
+
+		this.props.addUser(this.createFakeUser())
+	}
+	componentDidMount() {
+		for (let i = 0; i < 10; i++) {
+			this.props.addUser(this.createFakeUser())
+		}
 	}
 	render() {
 		let {users} = this.props;
 
 		return (
 			<Root header="کاربران" content="نمایش لیست تمامی کاربران" icon="users">
-				<UsersTable items={users} handler={this.rendeUseresTable} />
+				<Button onClick={::this.addNewUser} positive content="اضافه کردن کاربر جدید" labelPosition="right" icon="add" />
+				<UsersTable items={users} handler={this.renderUsersTable} />
 			</Root>
 		)
 	}
@@ -59,12 +69,16 @@ class Users extends React.Component {
 }
 function mapStateToProps(state) {
 	return {
-		users: state.users || []
+		users: state.users
 	}
 }
 
 function mapDispatchToProps(dispatch) {
-	return {}
+	return {
+		addUser(payloads) {
+			dispatch(addUser(payloads));
+		},
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

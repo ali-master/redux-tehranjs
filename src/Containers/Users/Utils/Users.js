@@ -12,8 +12,8 @@ const Users = ({handler: Handler, items}) => (
 					<Table.HeaderCell>نام</Table.HeaderCell>
 					<Table.HeaderCell>نام خانوادگی</Table.HeaderCell>
 					<Table.HeaderCell>ایمیل</Table.HeaderCell>
-					<Table.HeaderCell>سن</Table.HeaderCell>
-					<Table.HeaderCell>کشور</Table.HeaderCell>
+					<Table.HeaderCell>شماره همراه</Table.HeaderCell>
+					<Table.HeaderCell>شهر</Table.HeaderCell>
 				</Table.Row>
 			</Table.Header>
 
