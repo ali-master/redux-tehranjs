@@ -6,7 +6,7 @@ import Store, {history} from "./configuteStore";
 // Presentational Components
 import App from "Components/App";
 import NotFound from "Components/NotFound";
-import Books from "Components/Books";
+import Books from "Containers/Books";
 
 // import redux and router
 import {Router, Route, IndexRoute, Redirect} from "react-router";
