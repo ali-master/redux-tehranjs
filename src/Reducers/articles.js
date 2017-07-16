@@ -1,6 +1,6 @@
 import * as constants from "../Constants";
 
-function articles(state = {}, action) {
+function articles(state = [], action) {
     switch (action.type) {
         case constants.ADD_ARTICLES:
             state = [...state, ...action.payloads];
