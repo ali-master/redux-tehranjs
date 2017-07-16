@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {browserHistory} from "react-router";
-import Store from "./configuteStore";
 import {Provider} from "react-redux";
+import Store, {history} from "./configuteStore";
 
 // Presentational Components
 import App from "Components/App";
@@ -18,9 +17,11 @@ import "Styles/style.css";
 
 const router = (
 	<Provider store={Store}>
-		<Router history={browserHistory}>
+		<Router history={history}>
 			<Route component={App}>
-				<Route path="/" component={Books} />
+				<Route path="/">
+					<IndexRoute component={Books} />
+				</Route>
 				<Route path="*" name="Not Found!" component={NotFound} />
 			</Route>
 		</Router>
