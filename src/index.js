@@ -6,7 +6,10 @@ import Store, {history} from "./configuteStore";
 // Presentational Components
 import App from "Components/App";
 import NotFound from "Components/NotFound";
+
+// Containers
 import Books from "Containers/Books";
+import Users from "Containers/Users";
 
 // import redux and router
 import {Router, Route, IndexRoute, Redirect} from "react-router";
@@ -21,6 +24,7 @@ const router = (
 			<Route component={App}>
 				<Route path="/">
 					<IndexRoute component={Books} />
+					<Route path="users" component={Users} />
 				</Route>
 				<Route path="*" name="Not Found!" component={NotFound} />
 			</Route>
