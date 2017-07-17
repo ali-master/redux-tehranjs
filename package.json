@@ -48,6 +48,8 @@
     "prop-types": "15.5.10",
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
+    "redux-devtools": "3.4.0",
+    "redux-thunk": "2.2.0",
     "style-loader": "0.18.2",
     "superagent": "3.5.2",
     "sw-precache-webpack-plugin": "0.11.3",
