@@ -1,5 +1,6 @@
 import React from "react"
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import Root from "Root";
 import propTypes from "prop-types";
 import request from "superagent";
@@ -19,7 +20,7 @@ import moment from "moment-jalali";
 
 class Books extends React.Component {
 	static contextTypes = {
-		store: propTypes.object
+		store: propTypes.object,
 	}
 	constructor(props, context) {
 		super(props, context)
@@ -78,11 +79,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
+	return bindActionCreators({
 		addArticles(arrived) {
-			dispatch(addArticles(arrived))
+			return addArticles(arrived)
 		},
-	}
+	}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);
