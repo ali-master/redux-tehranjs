@@ -5,3 +5,5 @@ export const addArticles = (payloads) => {
 		dispatch({type: constants.ADD_ARTICLES, payloads});
 	}
 };
+
+export const deleteArticle = (id) => ({type: constants.DELETE_ARTICLE, id});

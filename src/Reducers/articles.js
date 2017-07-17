@@ -6,6 +6,12 @@ function articles(state = [], action) {
             state = [...state, ...action.payloads];
 			return state;
 
+		case constants.DELETE_ARTICLE:
+            state = state.filter(article => {
+				return article.id !== action.id
+			});
+			return state;
+
         default:
             return state;
     }

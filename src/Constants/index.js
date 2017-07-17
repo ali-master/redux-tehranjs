@@ -10,6 +10,7 @@ export const DESREMENT = "DESREMENT";
 /////// Articles
 /////////////////////////////////////
 export const ADD_ARTICLES = "ADD_ARTICLES";
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
 
 
 //////////////////////////////////////
