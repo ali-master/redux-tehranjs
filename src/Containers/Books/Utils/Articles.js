@@ -14,6 +14,7 @@ const Articles = ({handler: Handler, items}) => (
 					<Table.HeaderCell>تاریخ انتشار</Table.HeaderCell>
 					<Table.HeaderCell>رتبه کتاب</Table.HeaderCell>
 					<Table.HeaderCell>قیمت</Table.HeaderCell>
+					<Table.HeaderCell>عملیات</Table.HeaderCell>
 				</Table.Row>
 			</Table.Header>
 
