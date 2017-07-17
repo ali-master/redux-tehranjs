@@ -23,6 +23,8 @@ class Users extends React.Component {
 		super(props, context)
 
 		this.store = this.context.store;
+
+		const binder = ["renderUsersTable", "deleteUser"];
 	}
 	renderUsersTable({fname, lname, email, phone, state}, index) {
 		return (
@@ -56,14 +58,18 @@ class Users extends React.Component {
 		}
 	}
 	componentDidMount() {
-		this.appendUsers(10);
+		this.appendUsers(1);
+
+	}
+	componentWillReceiveProps(nextProps) {
+		console.log("willReceiveProps")
 	}
 	render() {
 		let {users} = this.props;
 
 		return (
 			<Root header="کاربران" content="نمایش لیست تمامی کاربران" icon="users">
-				<Button onClick={::this.addNewUser} positive content="اضافه کردن کاربر جدید" labelPosition="right" icon="add" />
+				<Button onClick={::	this.addNewUser} positive content="اضافه کردن کاربر جدید" labelPosition="right" icon="add" />
 				<UsersTable items={users} handler={this.renderUsersTable} />
 			</Root>
 		)
@@ -71,6 +77,7 @@ class Users extends React.Component {
 
 }
 function mapStateToProps(state) {
+	console.log("store", state)
 	return {
 		users: state.users
 	}

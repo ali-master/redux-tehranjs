@@ -99,6 +99,7 @@ module.exports = {
 			'Store': path.resolve(paths.appSrc, "configureStore"),
 			'Components': path.resolve(paths.appSrc, "Components"),
 			'Containers': path.resolve(paths.appSrc, "Containers"),
+			'Middlewares': path.resolve(paths.appSrc, "configureStore/Middlewares"),
 
 			'Assets': path.resolve(paths.appSrc, "assets"),
 			'Styles': path.resolve(paths.appSrc, "Styles"),

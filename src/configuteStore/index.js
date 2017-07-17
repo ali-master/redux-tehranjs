@@ -4,9 +4,9 @@ import thunk from "redux-thunk";
 import {syncHistoryWithStore} from "react-router-redux";
 
 import RootReducer from "../Reducers";
-import api from "./apiMdl";
+import API from "./Middlewares/API";
 
-const store = createStore(RootReducer, {}, compose(applyMiddleware(thunk, api), window.devToolsExtension && window.devToolsExtension()));
+const store = createStore(RootReducer, {}, compose(applyMiddleware(thunk, API), window.devToolsExtension && window.devToolsExtension()));
 const history = syncHistoryWithStore(browserHistory, store)
 
 export default store;

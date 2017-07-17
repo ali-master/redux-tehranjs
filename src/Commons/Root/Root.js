@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {Segment, Message, Header, Icon} from "semantic-ui-react";
+import {Segment, Message, Header, Icon, Statistic} from "semantic-ui-react";
 
 class Root extends Component {
 	static propTypes = {
@@ -23,14 +23,20 @@ class Root extends Component {
 		document.title = [prefix, pip, header].join(" ");
 	}
 	render() {
-		const {header, icon, content, className, children, as, color, loading} = this.props;
+		const {header, icon, content, className, children, as, color, loading, label, statistic} = this.props;
 
 		return (
 			<div className={["wrap", className].join(" ")}>
 				<Header as={as} dividing className="iransans">
 					<Icon className="page-header-icon" name={icon} />  {header}
 				</Header>
-				<Message attached content={content} color={color} />
+				<Message attached color={color}>
+					<Message.Content>
+						{content}
+
+						{statistic && <Statistic color={color || "green"} label={label || ""} floated="left" value={statistic} size="mini" style={{marginTop: -5}} />}
+					</Message.Content>
+				</Message>
 				<Segment attached loading={loading}>
 					{children}
 				</Segment>

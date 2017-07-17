@@ -13,8 +13,13 @@
 .ui.card>.content>.header,
 .ui.cards>.card>.content>.header,
 .dropdown > .text,
-.ui.search>.results>.message .header{
+.ui.search>.results>.message .header,
+.statistic > .value,
+.statistic > .label{
     font-family: "iransans", sans-serif !important;
+}
+.statistic > .label{
+	font-size: 0.7em !important;
 }
 .dir-ltr{
 	direction: ltr !important;

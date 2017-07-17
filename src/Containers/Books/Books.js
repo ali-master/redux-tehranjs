@@ -45,7 +45,7 @@ class Books extends React.Component {
 	deleteArticle(id, e) {
 		e && e.preventDefault();
 
-		this.props.deleteArticle(id);
+		this.props.delete(id);
 	}
 	renderArticlesTable({id, title, author, createdAt, rate, price}, index) {
 		return (
@@ -64,7 +64,7 @@ class Books extends React.Component {
 		let {articles} = this.props;
 
 		return (
-			<Root header="کتاب ها" content="نمایش لیست تمامی کتاب ها" icon="browser">
+			<Root header="کتاب ها" content="نمایش لیست تمامی کتاب ها" icon="browser" statistic={toFa(articles.length)} label="عدد کتاب">
 				<Articles items={articles} handler={::this.renderArticlesTable} />
 			</Root>
 		)
